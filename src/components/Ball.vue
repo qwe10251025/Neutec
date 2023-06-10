@@ -3,7 +3,8 @@ import { computed, onMounted, ref } from 'vue';
 const props = defineProps({
     position: Object,
     status: Number,
-    assignPosition: Object
+    assignPosition: Object,
+    totalOffset:Number
 });
 const y = '500px';
 </script>
@@ -36,12 +37,11 @@ const y = '500px';
     }
 
     100% {
-        transform: translate(v-bind(y));
+        transform: translate(calc(v-bind('props.totalOffset') * 1px));
     }
 }
 
 @keyframes positionMove {
-
     100% {
         left: v-bind('props.assignPosition.left');
         top: v-bind('props.assignPosition.top');
